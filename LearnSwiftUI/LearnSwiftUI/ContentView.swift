@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Image(systemName: "cloud.heavyrain")
+            .font(.system(size: 100))
+            .foregroundColor(.blue)
+            .shadow(color: .gray, radius: 10, x: 0, y: 10)
     }
 }
 

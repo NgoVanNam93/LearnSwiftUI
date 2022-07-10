@@ -9,8 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
+        Button(action: {
+            print("Delete button tapped!")
+        }) {
+            HStack{
+                Image(systemName: "trash")
+                    .font(.title)
+                Text("Delete")
+                    .fontWeight(.semibold)
+                    .font(.title)
+            }
             .padding()
+            .foregroundColor(.white)
+            .background(Color.red)
+            .cornerRadius(40)
+        }
     }
 }
 

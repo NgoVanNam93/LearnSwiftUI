@@ -36,8 +36,13 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        List(restaurants, id: \.name){restaurant in
-            BasicImageRow(restaurant: restaurant)
+        NavigationView{
+            List(restaurants, id: \.name){restaurant in
+                NavigationLink(destination: RestaurantDetailView(restaurant: restaurant)){
+                    BasicImageRow(restaurant: restaurant)
+                }
+            }
+            .navigationBarTitle("Restaurants")
         }
     }
 }
@@ -57,22 +62,28 @@ struct Restaurant{
 struct BasicImageRow: View {
     var restaurant: Restaurant
     var body: some View {
-        ZStack{
+        HStack{
             Image(restaurant.image)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(height: 200)
+                .frame(width: 40, height: 40)
                 .cornerRadius(10)
-                .overlay(
-                    Rectangle()
-                        .foregroundColor(.black)
-                        .cornerRadius(10)
-                        .opacity(0.2)
-                )
+            Text(restaurant.name)
+        }
+    }
+}
+
+struct RestaurantDetailView: View {
+    var restaurant: Restaurant
+    
+    var body: some View {
+        VStack{
+            Image(restaurant.image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
             Text(restaurant.name)
                 .font(.system(.title, design: .rounded))
                 .fontWeight(.black)
-                .foregroundColor(.white)
+            Spacer()
         }
     }
 }
